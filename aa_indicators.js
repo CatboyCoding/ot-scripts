@@ -59,10 +59,9 @@ function monitor() {
     var ss = Global.GetScreenSize();
     var w = ss[0],
         h = ss[1];
-    var mw = w / 2,
-        mh = h / 2;
-    var x = mw;
-    var y = mh / 2;
+    
+    var x = w * (UI.GetValue("Misc", "JAVASCRIPT", "Misc items", "AA Indicator X") / 100);
+    var y = h * (UI.GetValue("Misc", "JAVASCRIPT", "Misc items", "AA Indicator Y") / 100);
 
     var c = (abs / 58) * 255;
 
@@ -106,6 +105,9 @@ function text() {
     Render.String(10, 400, 0, "Inverter", [10, 10, 10, 255], 4);
     Render.String(10, 399, 0, "Inverter", col, 4);
 }
+
+UI.AddSliderInt("AA Indicator X", 0, 100)
+UI.AddSliderInt("AA Indicator Y", 0, 100)
 
 Cheat.RegisterCallback("Draw", "monitor")
 Cheat.RegisterCallback("Draw", "lines")
